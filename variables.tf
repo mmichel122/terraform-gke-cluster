@@ -9,3 +9,7 @@ variable "project_id" {
 variable "cluster_name" {
   default = "kube01-cluster"
 }
+
+variable "cidr_block" {
+  default = "10.2.0.0/16"
+}

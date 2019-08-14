@@ -7,6 +7,7 @@ provider "google" {
 module "network" {
   source       = "./network"
   project_name = var.project_name
+  cidr_block   = var.cidr_block
 }
 
 module "cluster" {

@@ -6,9 +6,9 @@ resource "google_compute_network" "gke_network" {
   auto_create_subnetworks = false
 }
 
-resource "google_compute_subnetwork" "europe1" {
+resource "google_compute_subnetwork" "europe" {
   name                     = "belgium"
-  ip_cidr_range            = "10.2.1.0/24"
+  ip_cidr_range            = "${cidrsubnet(var.cidr_block, 8, 1)}"
   region                   = "europe-west1"
   network                  = "${google_compute_network.gke_network.self_link}"
   private_ip_google_access = true
@@ -17,7 +17,7 @@ resource "google_compute_subnetwork" "europe1" {
 
 resource "google_compute_subnetwork" "europe2" {
   name                     = "london"
-  ip_cidr_range            = "10.2.2.0/24"
+  ip_cidr_range            = "${cidrsubnet(var.cidr_block, 8, 2)}"
   region                   = "europe-west2"
   network                  = "${google_compute_network.gke_network.self_link}"
   private_ip_google_access = true
@@ -26,7 +26,7 @@ resource "google_compute_subnetwork" "europe2" {
 
 resource "google_compute_subnetwork" "europe3" {
   name                     = "franckfurt"
-  ip_cidr_range            = "10.2.3.0/24"
+  ip_cidr_range            = "${cidrsubnet(var.cidr_block, 8, 3)}"
   region                   = "europe-west3"
   network                  = "${google_compute_network.gke_network.self_link}"
   private_ip_google_access = true
