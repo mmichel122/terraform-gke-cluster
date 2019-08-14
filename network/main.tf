@@ -7,27 +7,10 @@ resource "google_compute_network" "gke_network" {
 }
 
 resource "google_compute_subnetwork" "europe" {
-  name                     = "belgium"
-  ip_cidr_range            = "${cidrsubnet(var.cidr_block, 8, 1)}"
-  region                   = "europe-west1"
-  network                  = "${google_compute_network.gke_network.self_link}"
-  private_ip_google_access = true
-  enable_flow_logs         = true
-}
-
-resource "google_compute_subnetwork" "europe2" {
-  name                     = "london"
-  ip_cidr_range            = "${cidrsubnet(var.cidr_block, 8, 2)}"
-  region                   = "europe-west2"
-  network                  = "${google_compute_network.gke_network.self_link}"
-  private_ip_google_access = true
-  enable_flow_logs         = true
-}
-
-resource "google_compute_subnetwork" "europe3" {
-  name                     = "franckfurt"
-  ip_cidr_range            = "${cidrsubnet(var.cidr_block, 8, 3)}"
-  region                   = "europe-west3"
+  count                    = 3
+  name                     = "europe${count.index + 1}"
+  ip_cidr_range            = "${cidrsubnet(var.cidr_block, 8, count.index + 1)}"
+  region                   = "europe-west${count.index + 1}"
   network                  = "${google_compute_network.gke_network.self_link}"
   private_ip_google_access = true
   enable_flow_logs         = true

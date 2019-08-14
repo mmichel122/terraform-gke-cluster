@@ -1,7 +1,7 @@
 provider "google" {
   credentials = "${file("./creds/serviceaccount.json")}"
   project     = var.project_id
-  region      = "europe-west2"
+  region      = var.location
 }
 
 module "network" {
@@ -16,4 +16,5 @@ module "cluster" {
   cluster_name = var.cluster_name
   network_vpc  = module.network.network_vpc_uri
   subnetwork   = module.network.subnetwork_link
+  location     = var.location
 }
