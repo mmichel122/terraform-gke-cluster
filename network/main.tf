@@ -1,6 +1,6 @@
 
 resource "google_compute_network" "gke_network" {
-  name                    = var.project_name
+  name                    = "${var.network_name}"
   description             = "VPC That hosts the GKE Cluster"
   routing_mode            = "REGIONAL"
   auto_create_subnetworks = false

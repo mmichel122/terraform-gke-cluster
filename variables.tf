@@ -10,8 +10,12 @@ variable "cluster_name" {
   default = "kube01-cluster"
 }
 
+variable "network_name" {
+  default = "kube-net"
+}
+
 variable "cidr_block" {
-  default = "10.2.0.0/16"
+  default = "10.3.0.0/16"
 }
 
 variable "location" {

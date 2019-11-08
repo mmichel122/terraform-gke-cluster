@@ -7,6 +7,7 @@ resource "google_container_cluster" "primary" {
 
   remove_default_node_pool = true
   initial_node_count       = 1
+
 }
 
 resource "google_container_node_pool" "primary_nodes" {
@@ -14,6 +15,16 @@ resource "google_container_node_pool" "primary_nodes" {
   location   = var.location
   cluster    = "${google_container_cluster.primary.name}"
   node_count = 1
+
+  autoscaling {
+    min_node_count = 1
+    max_node_count = 6
+  }
+
+  management {
+    auto_repair  = true
+    auto_upgrade = true
+  }
 
   node_config {
     machine_type = "g1-small"
