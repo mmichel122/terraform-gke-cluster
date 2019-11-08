@@ -13,7 +13,6 @@ resource "google_compute_subnetwork" "europe" {
   region                   = "europe-west${count.index + 1}"
   network                  = "${google_compute_network.gke_network.self_link}"
   private_ip_google_access = true
-  enable_flow_logs         = true
 }
 
 resource "google_compute_firewall" "gke_network" {

@@ -24,5 +24,5 @@ module "filestore" {
   source       = "./file"
   region       = var.location
   file_name    = var.cluster_name
-  network_name = var.network_name
+  network_name = module.network.vpc_name
 }
