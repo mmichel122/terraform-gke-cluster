@@ -8,6 +8,7 @@ terraform/*
 
 # .tfvars files
 *.tfvars
+gke
 
 # account file
 creds/*
